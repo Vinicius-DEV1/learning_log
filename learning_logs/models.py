@@ -2,10 +2,24 @@ from django.db import models
 
 # Create your models here.
 class Topic(models.Model):
-    """um assunto sobre o qual o usuário está aprendendo"""
+    """Um assunto sobre o qual o usuário está aprendendo"""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def ___str___(self):
+    def __str__(self):
         """devolve uma representação em string do modelo"""
         return self.text
+    
+
+class Entry(models.Model):
+    """Algo especifico aprendido sobre um assunto"""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    data_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        """Devolve uma representação em string do modelo"""
+        return self.text[:50] + '...'

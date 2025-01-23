@@ -400,3 +400,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 ll_venv
+db.sqlite3
